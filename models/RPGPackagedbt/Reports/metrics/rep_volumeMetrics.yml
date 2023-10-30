@@ -1,0 +1,35 @@
+version: 2
+models:
+  - name: rep_volumeMetrics
+    transient: true
+    description: |
+      This model calculates the difference between the total volume in the current year and the previous year, 
+      as well as the percentage difference between them.
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      materialized: table
+      alias: volumeMetrics
+      tags:
+        - Report
+        - volume
+        - difference
+        - fyoy
+        - py
+        - drizzly
+    tests:
+      - checkemptymodel
+    columns:
+      - name: FISCALYEAR
+        description: |
+          The fiscal year of the sale, takes the cutoff month as 10. I.e October.
+      - name: TOTALVOLUMECY
+        description: |
+          The total volume in the current fiscal year.
+      - name: VOLUMEDIFF
+        description: |
+          The difference between the total volume in the current fiscal year and the previous fiscal year.
+          (coalesce(totalVolumecy, 0) - coalesce(totalVolumepy, 0))
+      - name: VOLUMEDIFFPERCENT
+        description: |
+          The percentage difference between the total volume in the current fiscal year and the previous fiscal year.
+          round((((totalVolumecy - totalVolumepy) / totalVolumecy) * 100), 2)

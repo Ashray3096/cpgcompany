@@ -1,0 +1,18 @@
+version: 2
+models:
+  - name: Drizzly_sales
+    description: |
+      This model contains beer, spirit, wine data from drizzly, all the fields are typecasted and cleaned, a better low level mart to build the lineage.
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      schema: drizzly  
+      alias: Sales
+      materialized: table
+      tags:
+        - integration
+        - drizzly
+      incremental_strategy: merge
+      post-hook: "ALTER TABLE insights_drizzly.sales ADD CONSTRAINT sale_PK PRIMARY KEY (DELIVERED_DATE,ORDER_ID)"
+    tests:
+      - checkemptymodel
+

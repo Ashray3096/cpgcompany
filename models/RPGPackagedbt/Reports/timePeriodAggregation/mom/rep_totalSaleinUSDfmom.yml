@@ -1,0 +1,35 @@
+version: 2
+models:
+  - name: rep_totalSaleinUSDfmom
+    transient: true
+    description: |
+      This model calculates the total sales in USD for a given fiscal year, it does this by first calculating the total sales for all vendors, and then converting that value to USD. 
+      The result is then grouped by fiscal year, calender month and displayed in a table with window of 2 prior months.
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      materialized: table
+      alias: totalSaleinUSDfmom
+      tags:
+        - Report
+        - fmom
+        - py
+        - 2py
+        - drizzly
+    tests:
+      - checkemptymodel
+    columns:
+      - name: yearmonthdisplay
+        description: |
+          The year and month of the sale, formatted as an integer in the format YYYYMM.
+      - name: FISCALYEAR
+        description: |
+          The fiscal year of the sale.
+      - name: totalsalescm
+        description: |
+          The total sales in USD for the current month.
+      - name: totalsales2mp
+        description: |
+          The total sales in USD for the same month two months prior, counted fiscally.
+      - name: totalsalesmp
+        description: |
+          The total sales in USD for the same month one month prior, counted fiscally.

@@ -1,0 +1,34 @@
+version: 2
+models:
+  - name: rep_totalVolumefyoy
+    transient: true
+    description: |
+      This model calculates the total sales in USD for a given fiscal year, it does this by first calculating the total sales for all vendors, and then converting that value to USD. 
+      The result is then grouped by fiscal year and displayed in a table.
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      materialized: table
+      alias: totalVolumefyoy
+      tags:
+        - Report
+        - volume
+        - count
+        - fyoy
+        - py
+        - 2py
+        - drizzly
+    tests:
+      - checkemptymodel
+    columns:
+      - name: FISCALYEAR
+        description: |
+          The fiscal year of the sale, takes the cutoff month as 10. I.e October.
+      - name: totalVolumecy
+        description: |
+          The total sales volume in numbers for the current fiscal year.
+      - name: totalVolume2py
+        description: |
+          The total sales volume in numbers for two fiscal years ago.
+      - name: totalVolumepy
+        description: |
+          The total sales volume in numbers for the previous fiscal year.

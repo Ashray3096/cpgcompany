@@ -1,0 +1,45 @@
+version: 2
+models:
+  - name: rep_ProductAggregation
+    transient: true
+    description: |
+        This model calculates the total sales in USD for a given fiscal year and 
+        generates a table with only required fields and a size level indicator
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      materialized: table
+      alias: ProductAggregationSizeLevel
+      tags:
+        - Report
+        - product
+        - sizelevel
+        - drizzly
+    tests:
+      - checkemptymodel
+    columns:
+      - name: year
+        description: The calendar year of the sale.
+      - name: month
+        description: The calendar month of the sale.
+      - name: top_level_category
+        description: The top level category of the product.
+      - name: top_subcategory
+        description: The top subcategory of the product.
+      - name: subcategory
+        description: The subcategory of the product.
+      - name: delivery_state
+        description: The state where the product was delivered.
+      - name: container_qty
+        description: The quantity of containers sold.
+      - name: container_type
+        description: The type of container used.
+      - name: liquor_volume
+        description: The volume of liquor sold.
+      - name: volume_units
+        description: The units of volume used.
+      - name: unit_price
+        description: The unit price of the product.
+      - name: totalSaleinUSD
+        description: The total sales in USD for the given fiscal year.
+      - name: sizelevel
+        description: A concatenation of liquor volume, volume units, and container type.

@@ -1,0 +1,32 @@
+version: 2
+models:
+  - name: rep_totalSaleinUSDfyoy
+    transient: true
+    description: |
+      This model calculates the total sales in USD for a given fiscal year, it does this by first calculating the total sales for all vendors, and then converting that value to USD. 
+      The result is then grouped by fiscal year and displayed in a table.
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      materialized: table
+      alias: totalSaleinUSDfyoy
+      tags:
+        - Report
+        - fyoy
+        - py
+        - 2py
+        - drizzly
+    tests:
+      - checkemptymodel
+    columns:
+      - name: FISCALYEAR
+        description: |
+          The fiscal year of the sale, takes the cutoff month as 10. I.e October.
+      - name: totalsalescy
+        description: |
+          The total sales in USD for the current fiscal year.
+      - name: totalsales2yp
+        description: |
+          The total sales in USD for the fiscal year two years prior to the current fiscal year.
+      - name: totalsalespy
+        description: |
+          The total sales in USD for the fiscal year prior to the current fiscal year.

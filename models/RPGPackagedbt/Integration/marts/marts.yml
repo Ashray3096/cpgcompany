@@ -1,0 +1,4 @@
+version: 2
+description: |
+  This folder contains all the models that are cleaned and ready for usage. The schematic is for each vendor there will seperate files 
+  like drizzly_Beer, iri_beer etc. The profile is setup with drizzly

@@ -1,0 +1,87 @@
+version: 2
+sources:
+  - name: drizzly_raw_sources
+    description: |
+      These contain the tables loaded from the airbyte with raw data of the file that was generated for the day, the idea is to have
+      truncate the table and upsert the data to the mart everyday. This uses the snowflakes own merge statement to do the upsert.
+      Notes: 
+          All the files have nulls in delivery date and category, either we need to add it based on the file type or exclude it. 
+          The only needed field is the topcategoryname, so lets default it to the file name.
+    database: cpgcompany
+    loader: snowsql
+    schema: raw
+    tables:
+      - name: drizzly_sales_daily
+        description: |
+          This table contains beer, wine and spirits data from drizzly, all the fields are loaded as strings and 
+          will need to be casted to the correct data type 
+        columns:
+          - name: DELIVERED_DATE
+            description: |
+              This is the date the order was delivered
+          - name: ORDER_ID
+            description: |
+              This is the unique identifier for the order
+          - name: BRAND_NAME
+            description: |
+              This is the brand name
+          - name: CATALOG_ITEM_NAME
+            description: |
+              This is the name of the catalog item
+          - name: RAW_ITEM_NAME
+            description: |
+              This is the name of the raw item
+          - name: TOP_LEVEL_CATEGORY
+            description: |
+              This is the top level category of the item
+          - name: TOP_SUBCATEGORY
+            description: |
+              This is the top subcategory of the item
+          - name: SUBCATEGORY
+            description: |
+              This is the subcategory of the item
+          - name: CATALOG_ITEM_ID
+            description: |
+              This is the unique identifier for the catalog item
+          - name: DELIVERY_STATE
+            description: |
+              This is the state where the order was delivered
+          - name: DELIVERY_ZIPCODE
+            description: |
+              This is the zipcode where the order was delivered
+          - name: STORE_MARKET
+            description: |
+              This is the market where the store is located
+          - name: CONTAINER_QTY
+            description: |
+              This is the quantity of containers
+          - name: CONTAINER_TYPE
+            description: |
+              This is the type of container
+          - name: VOLUME
+            description: |
+              This is the volume of the item
+          - name: VOLUME_UNITS
+            description: |
+              This is the units of the volume
+          - name: UNIT_PRICE
+            description: |
+              This is the unit price of the item
+          - name: VERIFIED_UPC
+            description: |
+              This is the verified UPC of the item
+          - name: FULFILLMENT_TYPE
+            description: |
+              This is the fulfillment type of the order
+          - name: NEW_VS_RETURNING
+            description: |
+              This is whether the customer is new or returning
+          - name: DEVICE
+            description: |
+              This is the device used to place the order
+          - name: TOTAL_QUANTITY
+            description: |
+              This is the total quantity of the item
+          - name: TOTAL_GMV
+            description: |
+              This is the total gross merchandise value of the item         

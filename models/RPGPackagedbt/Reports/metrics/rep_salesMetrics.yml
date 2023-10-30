@@ -1,0 +1,34 @@
+version: 2
+models:
+  - name: rep_salesMetrics
+    transient: true
+    description: |
+      This model calculates the difference between the total sales in the current year and the previous year, 
+      as well as the percentage difference between them.
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      materialized: table
+      alias: salesMetrics
+      tags:
+        - Report
+        - volume
+        - difference
+        - fyoy
+        - py
+        - drizzly
+    tests:
+      - checkemptymodel
+    columns:
+      - name: FISCALYEAR
+        description: |
+          The fiscal year of the sale, takes the cutoff month as 10. I.e October.
+      - name: TOTALSALESCY
+        description: |
+          The total sales in the current fiscal year.
+      - name: SALEUSDDIFF
+        description: |
+          The difference between the total sales in the current fiscal year and the previous fiscal year, in USD.
+      - name: SALESDIFFPERCENT
+        description: |
+          The percentage difference between the total sales in the current fiscal year and the previous fiscal year.
+          Calculated as ((totalsalescy - totalsalespy) / totalsalespy) * 100, rounded to 2 decimal places.
