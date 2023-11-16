@@ -1,0 +1,17 @@
+version: 2
+models:
+  - name: iri_spirits_sales
+    description: |
+      This model contains beer, spirit, wine data from iri, all the fields are typecasted and cleaned, a better low level mart to build the lineage.
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      schema: iri  
+      alias: Sales
+      materialized: table
+      tags:
+        - integration
+        - iri
+      incremental_strategy: merge
+    tests:
+      - checkemptymodel
+
