@@ -1,6 +1,6 @@
 version: 2
 sources:
-  - name: IRI_SALES_DAILY_BEER
+  - name: iri_raw_beer_sources
     description: |
       These contain the tables loaded from the airbyte with raw data of the file that was generated for the day, the idea is to have
       truncate the table and upsert the data to the mart everyday. This uses the snowflakes own merge statement to do the upsert.
@@ -11,7 +11,7 @@ sources:
     loader: snowsql
     schema: raw
     tables:
-      - name: iri_sales_daily
+      - name: IRI_SALES_DAILY_BEER
         description: |
           This table contains beer, wine and spirits data from iri, all the fields are loaded as strings and 
           will need to be casted to the correct data type 
@@ -28,10 +28,10 @@ sources:
           - name: AAB
             description: |
               This is the name of the catalog item
-          - name: CONTAINER_SIZE
+          - name: SIZE
             description: |
               This is the name of the raw item
-          - name: TIME_WEEK
+          - name: TIME
             description: |
               This is the top level category of the item
           - name: BRAND
@@ -46,15 +46,12 @@ sources:
           - name: FLAVOR
             description: |
               This is the state where the order was delivered
-          - name: SALES
+          - name: $ SALES
             description: |
               This is the zipcode where the order was delivered
-          - name: CBI_FLG
+          - name: CBI FLG
             description: |
               This is the market where the store is located
-          - name: CONTAINER_QTY
-            description: |
-              This is the quantity of containers
           - name: PACKAGE
             description: |
               This is the type of container
@@ -70,52 +67,60 @@ sources:
           - name: GEOGRAPHY
             description: |
               This is the verified UPC of the item
-          - name: WEEK_NO
+          - name: TIME WEEK
             description: |
               This is the fulfillment type of the order
-          - name: SALES_YA
+          - name: $ SALES YA
             description: |
               This is whether the customer is new or returning
-          - name: PRICE_SEGMENT
+          - name: BEV SEGMENT
             description: |
               This is the device used to place the order
-          - name: TOTAL_QUANTITY
+          - name: SUBCATEGORY
             description: |
               This is the total quantity of the item
-          - name: RMA_CROM_FLAG
+          - name: BRAND FAMILY
             description: |
               This is the total gross merchandise value of the item 
-          - name: IRI_ASPIRA_TIER
+          - name: UPC 13 DIGIT
             description: |
               This is the total gross merchandise value of the item
-          - name: DOM_VS_IMP_VALUE
+          - name: $ SALES % CHG
             description: |
               This is the total gross merchandise value of the item 
-          - name: ITEM_DESC
+          - name: PRICE SEGMENT
             description: |
               This is the total gross merchandise value of the item
-          - name: AVG_PRICE_PER_CASE
+          - name: RMA_CROM FLAG
             description: |
               This is the total gross merchandise value of the item  
-          - name: PRODUCT_DESC
+          - name: IRI ASPIRA TIER
             description: |
               This is the total gross merchandise value of the item  
-          - name: _AB_SOURCE_FILE_URL
+          - name: DOM VS IMP VALUE
             description: |
               This is the total gross merchandise value of the item     
-          - name: PORTFOLIO_SEGMENT
+          - name: ITEM DESCRIPTION
             description: |
               This is the total gross merchandise value of the item       
-          - name: GEO_CLASSIFICATION
+          - name: AVG PRICE PER CASE
             description: |
               This is the total gross merchandise value of the item
-          - name: IRI_BRAND_PRIORITY_GRP
+          - name: PRODUCT DESCRIPTION
             description: |
               This is the total gross merchandise value of the item
-          - name: IRI_FY_NATIONAL_FOCUS_BRAND
+          - name: IRI PORTFOLIO SEGMENT
             description: |
               This is the total gross merchandise value of the item
+          - name: GEOGRAPHY CLASSIFICATION
+            description: |
+              This is the total gross merchandise value of the item
+          - name: IRI BRAND PRIORITY GROUP
+            description: |
+              This is the total gross merchandise value of the item  
+          - name: IRI FY NATIONAL FOCUS BRAND
+            description: |
+              This is the total gross merchandise value of the item  
           - name: _AB_SOURCE_FILE_LAST_MODIFIED
             description: |
-              This is the total gross merchandise value of the item
-            
+              This is the total gross merchandise value of the item 
