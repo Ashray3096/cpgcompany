@@ -1,0 +1,121 @@
+version: 2
+sources:
+  - name: IRI_SALES_DAILY_BEER
+    description: |
+      These contain the tables loaded from the airbyte with raw data of the file that was generated for the day, the idea is to have
+      truncate the table and upsert the data to the mart everyday. This uses the snowflakes own merge statement to do the upsert.
+      Notes: 
+          All the files have nulls in delivery date and category, either we need to add it based on the file type or exclude it. 
+          The only needed field is the topcategoryname, so lets default it to the file name.
+    database: cpgcompany
+    loader: snowsql
+    schema: raw
+    tables:
+      - name: iri_sales_daily
+        description: |
+          This table contains beer, wine and spirits data from iri, all the fields are loaded as strings and 
+          will need to be casted to the correct data type 
+        columns:
+          - name: _AIRBYTE_RAW_ID
+            description: |
+              This is the column segment
+          - name: _AIRBYTE_EXTRACTED_AT
+            description: |
+              This is the beverage segment
+          - name: _AIRBYTE_META
+            description: |
+              This is the brand name
+          - name: AAB
+            description: |
+              This is the name of the catalog item
+          - name: CONTAINER_SIZE
+            description: |
+              This is the name of the raw item
+          - name: TIME_WEEK
+            description: |
+              This is the top level category of the item
+          - name: BRAND
+            description: |
+              This is the top subcategory of the item
+          - name: STATE
+            description: |
+              This is the subcategory of the item
+          - name: STYLE
+            description: |
+              This is the unique identifier for the catalog item
+          - name: FLAVOR
+            description: |
+              This is the state where the order was delivered
+          - name: SALES
+            description: |
+              This is the zipcode where the order was delivered
+          - name: CBI_FLG
+            description: |
+              This is the market where the store is located
+          - name: CONTAINER_QTY
+            description: |
+              This is the quantity of containers
+          - name: PACKAGE
+            description: |
+              This is the type of container
+          - name: SEGMENT
+            description: |
+              This is the volume of the item
+          - name: CATEGORY
+            description: |
+              This is the units of the volume
+          - name: SUPPLIER
+            description: |
+              This is the unit price of the item
+          - name: GEOGRAPHY
+            description: |
+              This is the verified UPC of the item
+          - name: WEEK_NO
+            description: |
+              This is the fulfillment type of the order
+          - name: SALES_YA
+            description: |
+              This is whether the customer is new or returning
+          - name: PRICE_SEGMENT
+            description: |
+              This is the device used to place the order
+          - name: TOTAL_QUANTITY
+            description: |
+              This is the total quantity of the item
+          - name: RMA_CROM_FLAG
+            description: |
+              This is the total gross merchandise value of the item 
+          - name: IRI_ASPIRA_TIER
+            description: |
+              This is the total gross merchandise value of the item
+          - name: DOM_VS_IMP_VALUE
+            description: |
+              This is the total gross merchandise value of the item 
+          - name: ITEM_DESC
+            description: |
+              This is the total gross merchandise value of the item
+          - name: AVG_PRICE_PER_CASE
+            description: |
+              This is the total gross merchandise value of the item  
+          - name: PRODUCT_DESC
+            description: |
+              This is the total gross merchandise value of the item  
+          - name: _AB_SOURCE_FILE_URL
+            description: |
+              This is the total gross merchandise value of the item     
+          - name: PORTFOLIO_SEGMENT
+            description: |
+              This is the total gross merchandise value of the item       
+          - name: GEO_CLASSIFICATION
+            description: |
+              This is the total gross merchandise value of the item
+          - name: IRI_BRAND_PRIORITY_GRP
+            description: |
+              This is the total gross merchandise value of the item
+          - name: IRI_FY_NATIONAL_FOCUS_BRAND
+            description: |
+              This is the total gross merchandise value of the item
+          - name: _AB_SOURCE_FILE_LAST_MODIFIED
+            description: |
+              This is the total gross merchandise value of the item
+            
