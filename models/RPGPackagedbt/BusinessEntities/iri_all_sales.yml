@@ -1,0 +1,22 @@
+version: 2
+models:
+  - name: iri_all_sales
+    description: |
+      This model is the total sales of all vendors, it is a view, and it is a high level mart.
+      For now its only has Drizzly, but can be extended to IRI and other vendors.
+      Introduces new columns that has metadata listed here
+    config:
+      # the default is drizzly, so the final schema would be drizzly_mart
+      materialized: view
+      tags:
+        - BusinessEntities
+        - iri
+    tests:
+      - checkemptymodel
+    columns:
+      - name: brand_family
+        description: |
+          The fiscal year of the sale, takes the cutoff month as 10. I.e October.
+      - name: sales
+        description: |
+          The calander year of the sale 
