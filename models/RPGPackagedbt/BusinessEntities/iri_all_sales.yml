@@ -7,7 +7,7 @@ models:
       Introduces new columns that has metadata listed here
     config:
       # the default is drizzly, so the final schema would be drizzly_mart
-      materialized: view
+      materialized: table
       tags:
         - BusinessEntities
         - iri
