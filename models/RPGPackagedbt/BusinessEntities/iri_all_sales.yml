@@ -13,10 +13,3 @@ models:
         - iri
     tests:
       - checkemptymodel
-    columns:
-      - name: brand_family
-        description: |
-          The fiscal year of the sale, takes the cutoff month as 10. I.e October.
-      - name: sales
-        description: |
-          The calander year of the sale 

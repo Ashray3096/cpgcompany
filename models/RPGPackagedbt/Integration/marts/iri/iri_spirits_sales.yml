@@ -6,7 +6,7 @@ models:
     config:
       # the default is drizzly, so the final schema would be drizzly_mart
       schema: iri  
-      alias: Sales
+      alias: sales_spirits
       materialized: table
       tags:
         - integration

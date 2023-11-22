@@ -19,7 +19,6 @@ select * from (select
     NULL as avg_750ml_price,
     price_segement,
     cbi_flg,
-    _AIRBYTE_EXTRACTED_AT,
     _AB_SOURCE_FILE_LAST_MODIFIED
     from 
     {{ ref('iri_beer_sales') }})
@@ -45,7 +44,6 @@ select * from (select
     NULL as avg_750ml_price,
     NULL as price_segement,
     cbi_flg,
-    _AIRBYTE_EXTRACTED_AT,
     _AB_SOURCE_FILE_LAST_MODIFIED
     from 
     {{ ref('iri_wine_sales') }})
@@ -71,7 +69,6 @@ select * from (select
     avg_750ml_price,
     price_segement,
     cbi_flg,
-    _AIRBYTE_EXTRACTED_AT,
     _AB_SOURCE_FILE_LAST_MODIFIED
     from 
     {{ ref('iri_spirits_sales') }})
